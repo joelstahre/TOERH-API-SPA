@@ -1,42 +1,50 @@
 <h1>Create a new application</h1>
 
 <% if @application.errors.any? %>
-  <div class="error_messages">
+  <div class="alert alert-error">
+    <h4>Alert!</h4>
     <% @application.errors.full_messages.each do |msg| %>
     <p><%= msg %></p>
     <% end %>
   </div>
 <% end %>
 
-<%= form_for @application do |f| %>
-  <div class ="text_field">
-    <p>
-      <%= f.label :app_name, "Application name:" %> <br/>
-      <%= f.text_field :app_name %>
-    </p>
-  </div>
-  
-  <div class ="text_area">
-    <p>
-      <%= f.label :app_desc, "Description:" %><br/>
-      <%= f.text_area :app_desc %>
-    </p>
-  </div>
+<%= form_for @application, :html => { :class => 'form-horizontal'} do |f| %>
+  <fieldset>
+    <legend>Register</legend>
 
-  <div class ="text_field">
-    <p>
-      <%= f.label :owner_name, "Application owner:" %><br/>
-      <%= f.text_field :owner_name %>
-    </p>
-  </div>
+    <div class="control-group">
+      <%= f.label :app_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :app_name, :class => 'text-field' %>
+      </div>
+    </div>
 
-  <div class ="text_field">
-    <p>
-      <%= f.label :contact_mail, "Email:" %><br/>
-      <%= f.text_field :contact_mail %>
-    </p>
-  </div>
+    <div class="control-group">
+      <%= f.label :app_desc, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :app_desc, :class => 'text-area' %>
+      </div>
+    </div>
 
-  <%= f.submit "Create" %>
-  
+    <div class="control-group">
+      <%= f.label :owner_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :owner_name, :class => 'text-field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :contact_mail, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :contact_mail, :class => 'text-field' %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+       <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
+  </fieldset>
 <% end %>
+
+
