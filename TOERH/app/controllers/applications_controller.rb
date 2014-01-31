@@ -10,11 +10,12 @@ class ApplicationsController < ApplicationController
   def create
     @application = Application.new(application_params)
     
-    key = ApiKey.new(:auth_token => 785480)
+    key = ApiKey.new
     
     @application.api_key = key
     
     if @application.save
+      key.save
       redirect_to applications_path
     else
       render :action => "new"

@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20140131004954) do
 
   create_table "api_keys", force: true do |t|
-    t.integer  "auth_token", default: 0
+    t.string   "auth_token", default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
