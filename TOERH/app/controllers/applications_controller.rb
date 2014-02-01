@@ -16,11 +16,13 @@ class ApplicationsController < ApplicationController
     
     if @application.save
       key.save
-      redirect_to applications_path
+      render :action => "success"
+      
     else
       render :action => "new"
     end 
   end
+
   
   private 
   

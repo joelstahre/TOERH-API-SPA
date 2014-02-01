@@ -1,0 +1,35 @@
+<h2>Congratulations, here's your Auth Token</h2>
+<div class="container">
+	<div class="row">
+		<div class="span4">
+			<dl class="dl-horizontal">
+				
+		  		<dt>Application Name:</dt>
+		  		<dd><%= @application.app_name %></dd>
+
+		  		<dt>Description:</dt>
+		  		<dd><%= @application.app_desc %></dd>
+
+		  		<dt>Application Name:</dt>
+		  		<dd><%= @application.app_name %></dd>
+
+		  		<dt>Owner:</dt>
+		  		<dd><%= @application.owner_name %></dd>
+
+		  		<dt>Application Email:</dt>
+		  		<dd><%= @application.contact_mail %></dd>
+			</dl>
+		</div>
+	</div>
+	<div class="row">	
+		<div class="span7">
+			<p><strong>Your Auth Token:</strong></p>
+			<h2><%= @application.api_key.auth_token%></h2>
+			<div class="alert alert-info">
+		  		<strong>Heads up!</strong> Write your Auth Token down and keep it somewere safe!
+			</div>
+			<a class="btn btn-primary" href="#">Sen a copy to my email</a>
+		</div>
+
+	</div>
+</div>

@@ -14,5 +14,6 @@ class Application < ActiveRecord::Base
             :length => {:minimum => 4, :message => "Must be at least 4 characters long!"}
   
   validates :contact_mail,
-            :presence => {:message => "Mail can not be emtyp!"}
+            :presence => {:message => "Mail can not be emtyp!"},
+            :uniqueness => {:message => "This email is already registerd."}
 end
