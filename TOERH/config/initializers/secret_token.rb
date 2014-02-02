@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-TOERH::Application.config.secret_key_base = '142cf49d1e0e42dc68740122bcf8e7794b4e97311167abb88ddb12560daa44397d8d452b7f5a5fc3e4f93f909c921559514dc66394e26a1a86c185dec45c0f73'
+TOERH::Application.config.secret_key_base = '5c9a2a1ae3bb803c748b972c842c8f137c51da96598914b88c9afcc2de7e2d5cd7280cfbf5a7eb563b9b132585036371c7f42dd150fafe1ba2b300ed45a91530'

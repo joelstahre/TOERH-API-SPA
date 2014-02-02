@@ -26,7 +26,7 @@ TOERH::Application.configure do
     :domain => 'test.com',
     :user_name => 'stahredev@gmail.com',
     :password => 'kofing920'
-  }  
+  } 
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

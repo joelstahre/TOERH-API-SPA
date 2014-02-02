@@ -1,4 +1,6 @@
 TOERH::Application.routes.draw do
+
+  get "reminders/new"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -6,14 +8,15 @@ TOERH::Application.routes.draw do
   root 'home#index'
 
   # Example of regular route:
-  # get '/forget' => 'applications#forget', :as => 'forget'
+  #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :applications
-  resources :home
+  resources :applications, :controller => "register"
+  resources :register
+  resources :reminders
 
   # Example resource route with options:
   #   resources :products do
