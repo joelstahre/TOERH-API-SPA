@@ -10,9 +10,6 @@
 		  		<dt>Description:</dt>
 		  		<dd><%= @application.app_desc %></dd>
 
-		  		<dt>Application Name:</dt>
-		  		<dd><%= @application.app_name %></dd>
-
 		  		<dt>Owner:</dt>
 		  		<dd><%= @application.owner_name %></dd>
 
@@ -28,7 +25,8 @@
 			<div class="alert alert-info">
 		  		<strong>Heads up!</strong> Write your Auth Token down and keep it somewere safe!
 			</div>
-			<a class="btn btn-primary" href="#">Sen a copy to my email</a>
+			<p>An email with your Auth Token has been sent to: <%= @application.contact_mail %>
+			<p>
 		</div>
 
 	</div>

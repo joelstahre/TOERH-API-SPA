@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi, <%= @application.owner_name %></h1>
+    <p>
+      You have successfully registerd your application,
+      your Auth Token is: <%= @application.api_key.auth_token %><br/>
+    </p>
+    <p>
+      <dl>
+        
+          <dt>Application Name:</dt>
+          <dd><%= @application.app_name %></dd>
+
+          <dt>Description:</dt>
+          <dd><%= @application.app_desc %></dd>
+
+          <dt>Owner:</dt>
+          <dd><%= @application.owner_name %></dd>
+
+          <dt>Application Email:</dt>
+          <dd><%= @application.contact_mail %></dd>
+      </dl>
+    </p>
+    <p>Thanks for registering!</p>
+  </body>
+</html>

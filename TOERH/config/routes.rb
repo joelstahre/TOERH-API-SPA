@@ -6,7 +6,7 @@ TOERH::Application.routes.draw do
   root 'home#index'
 
   # Example of regular route:
-  #get 'applications/success' => 'applications#success'
+  # get '/forget' => 'applications#forget', :as => 'forget'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

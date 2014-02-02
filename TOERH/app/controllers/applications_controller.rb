@@ -16,13 +16,13 @@ class ApplicationsController < ApplicationController
     
     if @application.save
       key.save
+      RegisterMailer.register_success(@application).deliver
       render :action => "success"
       
     else
       render :action => "new"
     end 
   end
-
   
   private 
   
