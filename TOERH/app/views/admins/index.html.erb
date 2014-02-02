@@ -1,0 +1,5 @@
+<h2>Welcome, <%= current_admin.first_name %></h2>
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>

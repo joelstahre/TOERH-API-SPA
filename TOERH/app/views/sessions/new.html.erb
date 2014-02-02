@@ -1,0 +1,36 @@
+<h1>Admin login</h1>
+
+<div class="container">
+	<div class="row">
+		<div class="span4">
+
+			<%= form_tag admin_signin_path, :method => :post do %>
+				<div>
+					<%= label_tag :username %>
+					<%= text_field_tag :username, params[:username] %>
+				</div>
+
+				<div>
+					<%= label_tag :password %>
+					<%= password_field_tag :password, params[:password] %>
+				</div>
+
+				<div><%= submit_tag "Signin" %></div>
+			<% end %>
+
+		</div>
+	</div>
+</div>
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
+
+
+<!--<form class="form-signin">
+	<h2 class="form-signin-heading">Please sign in</h2>
+    <input type="text" class="input-block-level" placeholder="Email address">
+    <input type="password" class="input-block-level" placeholder="Password">
+
+    <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+</form>-->
