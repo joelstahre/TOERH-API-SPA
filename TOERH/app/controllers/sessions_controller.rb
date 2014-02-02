@@ -12,9 +12,10 @@ class SessionsController < ApplicationController
 		admin = Admin.check(params[:username], params[:password])
 		if admin
 			session[:admin_id] = admin.id
-			redirect_to admins_path :notice => "Signed in!"
+			flash[:alert] = "Signed in successfully."
+			redirect_to api_keys_path
 		else
-			flash.now.alert = "Invalid email or password"
+			flash[:alert] = "Invalid email or password"
 			render 'new'
 		end
 	end
@@ -22,7 +23,8 @@ class SessionsController < ApplicationController
 	# GET /admin/signout
 	def admin_signout
 		session[:admin_id] = nil
-		redirect_to root_path :notice => "Signed out!"
+		flash[:alert] = "Signed out successfully."
+		redirect_to root_path
 	end
 		
 end

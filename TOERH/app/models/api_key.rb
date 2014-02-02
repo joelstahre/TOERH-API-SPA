@@ -1,5 +1,5 @@
 class ApiKey < ActiveRecord::Base
-	has_one :application
+	has_one :application, :dependent => :destroy
 
 	before_create :generate_token
 

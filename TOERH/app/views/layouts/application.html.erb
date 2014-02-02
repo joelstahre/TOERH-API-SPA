@@ -28,7 +28,7 @@
 	        <ul class="nav pull-right">
 
 	        	<% if current_admin %>
-	        	<li><strong><p class="navbar-text">Signed in as: <%= link_to current_admin.username, admins_path  %></p></strong></li>
+	        	<li><strong><p class="navbar-text">Signed in as: <%= link_to current_admin.username, api_keys_path  %></p></strong></li>
 	        	<li><%= link_to "Signout", admin_signout_path %></li>
 	        	<% else %>
 	          	<li><%= link_to "Admin Signin", new_session_path %></li>
@@ -41,6 +41,12 @@
 	</div>
 
 <div class="container">
+
+	<% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
+
+
 	<div class="row">
 		<div class="span9">
 			<%= yield %>

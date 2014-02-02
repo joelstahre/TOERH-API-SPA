@@ -1,5 +1,6 @@
 TOERH::Application.routes.draw do
 
+  get "api_keys/index"
   get "reminders/new"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -10,8 +11,8 @@ TOERH::Application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
-  post 'admin/signin' => 'sessions#admin_signin', :as => 'admin_signin'
-  get 'admin/signout' => 'sessions#admin_signout', :as => 'admin_signout'
+  post 'api_key/signin' => 'sessions#admin_signin', :as => 'admin_signin'
+  get 'api_key/signout' => 'sessions#admin_signout', :as => 'admin_signout'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -20,8 +21,8 @@ TOERH::Application.routes.draw do
   resources :applications, :controller => "register"
   resources :register
   resources :reminders
-  resources :admins
   resources :sessions
+  resources :api_keys
 
   # Example resource route with options:
   #   resources :products do

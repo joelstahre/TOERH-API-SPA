@@ -1,0 +1,36 @@
+<h3>Application information for:<%= @key.application.contact_mail%></h3>
+
+<div class="container">
+	<div class="row">
+		<div class="span4">
+			<dl class="dl-horizontal">
+				
+		  		<dt>Application Name:</dt>
+		  		<dd><%= @key.application.app_name %></dd>
+
+		  		<dt>Description:</dt>
+		  		<dd><%= @key.application.app_desc %></dd>
+
+		  		<dt>Owner:</dt>
+		  		<dd><%= @key.application.owner_name %></dd>
+
+		  		<dt>Application Email:</dt>
+		  		<dd><%= @key.application.contact_mail %></dd>
+
+		  		<dt>Auth Token:</dt>
+		  		<dd><%= @key.auth_token %></dd>
+
+		  		<dt>Created at:</dt>
+		  		<dd><%= @key.created_at %></dd>
+			</dl>
+			
+		</div>
+	</div>
+	<div class="span4">
+		<div class="form-actions">
+			<%= link_to 'Revoke', edit_api_key_path(@key), :method => :edit, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+
+			<%= link_to 'Delete application', api_key_path(@key), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+		</div>
+	</div>
+</div>
