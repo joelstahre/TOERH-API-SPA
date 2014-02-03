@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140202121957) do
+ActiveRecord::Schema.define(version: 20140203164711) do
 
   create_table "admins", force: true do |t|
     t.string   "first_name",      null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140202121957) do
     t.string   "auth_token", default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "revoked",    default: false, null: false
   end
 
   create_table "applications", force: true do |t|

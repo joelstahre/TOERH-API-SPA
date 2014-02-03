@@ -28,9 +28,15 @@
 	</div>
 	<div class="span4">
 		<div class="form-actions">
-			<%= link_to 'Revoke', edit_api_key_path(@key), :method => :edit, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+			<%if @key.revoked == false%>
+          		<%= link_to 'Revoke', api_key_path(@key), :method => :put, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          	<%else%>
+           		<%= link_to 'Allow', api_key_path(@key), :method => :put, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          	<% end %>
 
-			<%= link_to 'Delete application', api_key_path(@key), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+				<%= link_to 'Delete application', api_key_path(@key), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
 		</div>
+		<%= link_to "back", api_keys_path, :class => 'btn btn-mini' %>
 	</div>
+
 </div>

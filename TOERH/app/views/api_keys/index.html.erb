@@ -18,8 +18,7 @@
         <td><%= key.auth_token %></td>
         <td><%= key.created_at %></td>
         <td>
-          <%= link_to 'Show', api_key_path(key), :class => 'btn btn-mini' %>
-          <%= link_to 'Revoke', edit_api_key_path(key), :method => :edit, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          <%= link_to 'Details', api_key_path(key), :class => 'btn btn-mini' %>
         </td>
       </tr>
     <% end %>
