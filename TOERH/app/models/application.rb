@@ -1,5 +1,5 @@
 class Application < ActiveRecord::Base
-	belongs_to :api_key
+  belongs_to :api_key
 
   	validates :app_name,
               :presence => {:message => "Application name can not be empty!"},

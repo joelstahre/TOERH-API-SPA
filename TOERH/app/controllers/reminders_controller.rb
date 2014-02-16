@@ -2,7 +2,8 @@ class RemindersController < ApplicationController
 	def new
   	end
 
-  	#TODO Validation?
+  	# TODO Validation?
+    # Send an email to the users email address
 	def create
   		@email = params[:email]
 		@application = Application.find_by_contact_mail(@email)

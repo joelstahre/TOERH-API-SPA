@@ -1,10 +1,14 @@
 class ApiKeysController < ApplicationController
 	before_action :require_signin
 
+	# GET /api_keys
+	# Show all api keys
 	def index
 		@key = ApiKey.all
 	end
 
+	# GET /api_keys/1
+	# Show a specifik api_key
 	def show
 		@key = ApiKey.find(params[:id])
 	end
@@ -13,6 +17,8 @@ class ApiKeysController < ApplicationController
 		
 	end
 
+	# PUT /api_keys/1
+	# Update specifik api_key
 	def update
 		@key = ApiKey.find(params[:id])
 
@@ -28,6 +34,8 @@ class ApiKeysController < ApplicationController
 		end
 	end
 
+	# DELETE /api_keys/1
+	# Delete a specifik api_key
 	def destroy
 		@key = ApiKey.find(params[:id])
 		@key.destroy

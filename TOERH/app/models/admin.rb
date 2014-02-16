@@ -11,7 +11,6 @@ class Admin < ActiveRecord::Base
 			  :uniqueness => {:message => 'The username is already used.'}
 
 
-
 	def self.check(username, password)
 		admin = find_by_username(username)
 		if admin && admin.authenticate(password)

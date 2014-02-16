@@ -3,10 +3,12 @@ class RegisterController < ApplicationController
 		
 	end
 
+	# Show Register form for new Application
 	def new
 		@application = Application.new
 	end
 
+	# Create a new application and generate a new auth_token
 	def create
 	    @application = Application.new(application_params)
 	    
@@ -26,6 +28,7 @@ class RegisterController < ApplicationController
 
   	private 
   
+  	# Prevent mass assagniment
   	def application_params
     	params.require(:application).permit(:app_name, :app_desc, :owner_name, :contact_mail)
   	end

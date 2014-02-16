@@ -5,6 +5,7 @@ class ApiKey < ActiveRecord::Base
 
 	private
 
+    # Generate a unique auth_token key
 	def generate_token
 		begin
 			self.auth_token = SecureRandom.hex
