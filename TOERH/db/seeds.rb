@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Resource.create(user_id: 1, resource_type_id: 1, licence_id: 1, title: "Resurs titel", desciption: "en beskrivning", url: "http://www.joelstahre.com")
