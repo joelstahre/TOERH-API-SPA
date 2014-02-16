@@ -3,8 +3,8 @@
 <% if @application.errors.any? %>
   <div class="alert alert-error">
     <h4>Alert!</h4>
-    <% @application.errors.full_messages.each do |msg| %>
-    <p><%= msg %></p>
+    <% @application.errors.messages.each do |model, msg| %>
+    <p><%= msg.first %></p>
     <% end %>
   </div>
 <% end %>

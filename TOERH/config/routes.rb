@@ -1,5 +1,11 @@
 TOERH::Application.routes.draw do
 
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :resources
+    end
+  end
+
   get "api_keys/index"
   get "reminders/new"
   # The priority is based upon order of creation: first created -> highest priority.
@@ -8,7 +14,7 @@ TOERH::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  # Example of regular route:
+  # Example of regular route
   #   get 'products/:id' => 'catalog#view'
 
   post 'api_key/signin' => 'sessions#admin_signin', :as => 'admin_signin'
