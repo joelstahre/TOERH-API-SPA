@@ -1,8 +1,8 @@
 class Application < ActiveRecord::Base
 	belongs_to :api_key
 
-	validates :app_name,
-            :presence => {:message => "Application name can not be empty!"},
+  	validates :app_name,
+              :presence => {:message => "Application name can not be empty!"},
               :length => {:minimum => 3, :message => "Must be at least 3 characters long!"}
   
   	validates :app_desc,
