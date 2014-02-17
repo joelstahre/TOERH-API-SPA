@@ -12,7 +12,7 @@ class Resource < ActiveRecord::Base
 
     def to_xml(options={})
         super(options.merge(:except => [:user_id, :resource_type_id, :licence_id],
-                            :include => [:user, :resource_type, :licence]))
+                            :include => [:user, :resource_type, :licence, :tags]))
     end
 
-end
+end 

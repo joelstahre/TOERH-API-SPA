@@ -18,9 +18,32 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    ## API Methods
+
+    # Make sure that there is a valid auth_token
     def restrict_access
         authenticate_or_request_with_http_token do |token, options|
-            ApiKey.exists?(auth_token: token)
+            if ApiKey.exists?(auth_token: token)
+                if ApiKey.find_by_auth_token(token) 
+                    return true
+                else
+                    return false
+                end
+            end
         end
+    end
+
+    # Format to respond with
+    def respond_format(result)
+        respond_with do |format|
+            format.json {render json: result}
+            format.xml {render xml: result}
+        end
+    end
+
+    # Get the result
+    def get_result(status, message, data)
+        response.status = status
+        return result = { status: response.status, message: message, data: data}
     end
 end

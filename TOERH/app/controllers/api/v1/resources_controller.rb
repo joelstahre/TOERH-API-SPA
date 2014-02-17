@@ -5,14 +5,33 @@ module Api
 
             respond_to :json, :xml
 
+            # GET
             def index
-                respond_with Resource.all
+
+                begin
+                    r = Resource.all
+                    result = get_result(201, 'Successfully fetched all resources', r)
+                rescue
+                    result = get_result(500, 'Faild to fetched all resources', r)
+                end
+
+                respond_format(result)
             end
 
+            # GET/id
             def show
-                respond_with Resource.find(params[:id])
+
+                begin
+                    r = Resource.find(params[:id])
+                    result = get_result(201, 'Successfully fetched Resource', r)
+                rescue
+                    result = get_result(500, 'Faild to find Resource', r)
+                end
+
+                respond_format(result)
             end
 
+            # POST
             def create
 
                 begin
@@ -23,46 +42,59 @@ module Api
                     end
 
                     if r.save
-                        response.status = 201
-                        result = { status: response.status, message: 'Resource successfully created', data: r}
+                        result = get_result(201, 'Resource successfully created', r)
                     else
-                        response.status = 500
-                        result = { status: response.status, message: 'Resource could not be created'}
+                        result = get_result(500, 'Faild to create Resource', r)
                     end
 
                 rescue
-                    response.status = 500
-                    result = { status: response.status, message: 'Resource could not be created'}
+                    result = get_result(500, 'Faild to create Resource', r)
                 end
 
                 respond_format(result)
-                
+
             end
 
+            # PUT
             def update
-                respond_with Resource.update(params[:id], params[:resource])
+                
+                begin
+                    r = Resource.find(params[:id])
+                    
+                    # TODO: Hur skall taggar hanteras vid update, lägga till, ta bort.
+                    params[:tags].each do |tag|
+                        r.tags << Tag.find(tag)
+                    end
+
+                    if r.update(resource_params)
+                        result = get_result(201, 'Resource successfully updated', r)
+                    else
+                        result = get_result(500, 'Faild to update Resource', r)
+                    end
+
+                rescue
+                    result = get_result(500, 'Faild to find Resource', r)
+                end
+
+                respond_format(result)
             end
 
+            # DELETE
             def destroy
                 
                 begin
                     r = Resource.find(params[:id])
 
                     if r.destroy
-                        response.status = 201
-                        result = { status: response.status, message: 'Resource successfully Deleted'}
+                        result = get_result(201, 'Resource successfully deleted', r)
                     else
-                        response.status = 500
-                        result = { status: response.status, message: 'Resource could not be Deleted'}
+                        result = get_result(500, 'Faild to delete Resource', r)
                     end
 
                 rescue
-                    response.status = 500
-                    result = { status: response.status, message: 'Resource could not be found'}
-
+                    result = get_result(500, 'Faild to find Resource', r)
                 end
 
-               
                 respond_format(result)
 
             end
@@ -72,13 +104,6 @@ module Api
             # Prevent mass assagniment
             def resource_params
                 params.require(:resource).permit(:title, :description, :url, :user_id, :resource_type_id, :licence_id, :tags)
-            end
-
-            def respond_format(result)
-                respond_with do |format|
-                    format.json {render json: result}
-                    format.xml {render xml: result}
-                end
             end
 
         end
