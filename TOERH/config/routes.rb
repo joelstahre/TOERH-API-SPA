@@ -1,13 +1,14 @@
 TOERH::Application.routes.draw do
 
+  # Api Routes
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       resources :resources
+      resources :users
     end
   end
 
-  get "api_keys/index"
-  get "reminders/new"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -16,7 +17,8 @@ TOERH::Application.routes.draw do
 
   # Example of regular route
   #   get 'products/:id' => 'catalog#view'
-
+  get "api_keys/index"
+  get "reminders/new"
   post 'api_key/signin' => 'sessions#admin_signin', :as => 'admin_signin'
   get 'api_key/signout' => 'sessions#admin_signout', :as => 'admin_signout'
 

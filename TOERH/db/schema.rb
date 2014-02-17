@@ -64,18 +64,18 @@ ActiveRecord::Schema.define(version: 20140216135227) do
     t.datetime "updated_at"
   end
 
+  create_table "resources_tags", id: false, force: true do |t|
+    t.integer "tag_id"
+    t.integer "resource_id"
+  end
+
+  add_index "resources_tags", ["tag_id", "resource_id"], name: "index_resources_tags_on_tag_id_and_resource_id"
+
   create_table "tags", force: true do |t|
     t.string   "tag",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "tags_resources", id: false, force: true do |t|
-    t.integer "tag_id"
-    t.integer "resource_id"
-  end
-
-  add_index "tags_resources", ["tag_id", "resource_id"], name: "index_tags_resources_on_tag_id_and_resource_id"
 
   create_table "users", force: true do |t|
     t.string   "first_name", null: false

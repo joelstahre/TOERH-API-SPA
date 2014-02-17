@@ -3,7 +3,7 @@ module Api
         class ResourcesController < ApplicationController
             before_filter :restrict_access
 
-            respond_to :json
+            respond_to :json, :xml
 
             def index
                 respond_with Resource.all
@@ -14,7 +14,29 @@ module Api
             end
 
             def create
-                respond_with Resource.create(params[:resource])
+
+                begin
+                    r = Resource.new(resource_params)
+
+                    params[:tags].each do |tag|
+                        r.tags << Tag.find(tag)
+                    end
+
+                    if r.save
+                        response.status = 201
+                        result = { status: response.status, message: 'Resource successfully created', data: r}
+                    else
+                        response.status = 500
+                        result = { status: response.status, message: 'Resource could not be created'}
+                    end
+
+                rescue
+                    response.status = 500
+                    result = { status: response.status, message: 'Resource could not be created'}
+                end
+
+                respond_format(result)
+                
             end
 
             def update
@@ -22,14 +44,40 @@ module Api
             end
 
             def destroy
-                respond_with Resource.destroy(params[:id])
+                
+                begin
+                    r = Resource.find(params[:id])
+
+                    if r.destroy
+                        response.status = 201
+                        result = { status: response.status, message: 'Resource successfully Deleted'}
+                    else
+                        response.status = 500
+                        result = { status: response.status, message: 'Resource could not be Deleted'}
+                    end
+
+                rescue
+                    response.status = 500
+                    result = { status: response.status, message: 'Resource could not be found'}
+
+                end
+
+               
+                respond_format(result)
+
             end
 
             private 
+  
+            # Prevent mass assagniment
+            def resource_params
+                params.require(:resource).permit(:title, :description, :url, :user_id, :resource_type_id, :licence_id, :tags)
+            end
 
-            def restrict_access
-                authenticate_or_request_with_http_token do |token, options|
-                    ApiKey.exists?(auth_token: token)
+            def respond_format(result)
+                respond_with do |format|
+                    format.json {render json: result}
+                    format.xml {render xml: result}
                 end
             end
 
