@@ -33,17 +33,4 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    # Format to respond with
-    def respond_format(result)
-        respond_with do |format|
-            format.json {render json: result}
-            format.xml {render xml: result}
-        end
-    end
-
-    # Get the result
-    def get_result(status, message, data)
-        response.status = status
-        return result = { status: response.status, message: message, data: data}
-    end
 end

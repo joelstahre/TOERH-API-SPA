@@ -5,6 +5,11 @@ TOERH::Application.routes.draw do
     namespace :v1 do
       resources :resources
       resources :users
+
+      resources :users do
+        resources :resources
+      end
+      
     end
   end
 
