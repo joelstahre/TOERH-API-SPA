@@ -8,8 +8,12 @@ module Api
             def index
 
                 begin
-                    @u = User.all
-                    @response = get_result(201, 'Successfully fetched all Users')
+                    if params[:user_id]
+                        @u = User.where(user_id: params[:user_id])
+                    else
+                        @u = User.all
+                    end
+                    @response = get_result(200, 'Successfully fetched all Users')
                 rescue
                     @response = get_result(500, 'Faild to fetch all Users')
                 end
@@ -20,7 +24,7 @@ module Api
             def show
                 begin
                     @u = User.find(params[:id])
-                    @response = get_result(201, 'Successfully fetched User')
+                    @response = get_result(200, 'Successfully fetched User')
                 rescue
                     @response = get_result(500, 'Faild to find User')
                 end
@@ -51,7 +55,7 @@ module Api
                     @u = User.find(params[:id])
                     
                     if @u.update(user_params)
-                        @response = get_result(201, 'User successfully updated')
+                        @response = get_result(200, 'User successfully updated')
                     else
                         @response = get_result(500, 'Faild to update user')
                     end
@@ -68,7 +72,7 @@ module Api
                     @u = User.find(params[:id])
 
                     if @u.destroy
-                        @response = get_result(201, 'User successfully deleted')
+                        @response = get_result(200, 'User successfully deleted')
                     else
                         @response = get_result(500, 'Faild to delete User')
                     end

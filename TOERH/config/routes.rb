@@ -9,6 +9,10 @@ TOERH::Application.routes.draw do
       resources :users do
         resources :resources
       end
+
+      resources :resources do
+        resources :user
+      end
       
     end
   end
