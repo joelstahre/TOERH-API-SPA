@@ -1,3 +1,3 @@
-collection @u
+collection false
 
 extends 'users/show'

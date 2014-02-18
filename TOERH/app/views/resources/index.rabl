@@ -1,3 +1,3 @@
-collection @r
+collection false
 
 extends 'resources/show'

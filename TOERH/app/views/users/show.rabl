@@ -1,7 +1,7 @@
-object @u
+object false
 
-attributes :user_id, :first_name, :last_name, :email
-
-child :resource do 
-    attributes :id, :title, :desciption, :url, :created_at, :updated_at
+extends 'users/response'
+ 
+child @u do
+  attributes :id, :first_name, :last_name, :email, :created_at, :updated_at
 end

@@ -1,3 +1,3 @@
-object @u
+object false
 
 extends 'users/create'

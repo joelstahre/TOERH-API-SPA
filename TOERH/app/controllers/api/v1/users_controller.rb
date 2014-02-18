@@ -9,9 +9,9 @@ module Api
 
                 begin
                     @u = User.all
-                    result = get_result(201, 'Successfully fetched all Users')
+                    @response = get_result(201, 'Successfully fetched all Users')
                 rescue
-                    result = get_result(500, 'Faild to fetch all Users')
+                    @response = get_result(500, 'Faild to fetch all Users')
                 end
 
                 render "users/index"
@@ -20,11 +20,11 @@ module Api
             def show
                 begin
                     @u = User.find(params[:id])
-                    @result = get_result(201, 'Successfully fetched User')
+                    @response = get_result(201, 'Successfully fetched User')
                 rescue
-                    @result = get_result(500, 'Faild to find User')
+                    @response = get_result(500, 'Faild to find User')
                 end
-
+                
                 render "users/show"
             end
 
@@ -33,13 +33,13 @@ module Api
                     @u = User.new(user_params)
 
                     if @u.save
-                        result = get_result(201, 'User successfully created')
+                        @response = get_result(201, 'User successfully created')
                     else
-                        result = get_result(500, 'Faild to create User')
+                        @response = get_result(500, 'Faild to create User')
                     end
 
                 rescue
-                    result = get_result(500, 'Faild to create User')
+                    @response = get_result(500, 'Faild to create User')
                 end
 
                 render "users/create"
@@ -51,13 +51,13 @@ module Api
                     @u = User.find(params[:id])
                     
                     if @u.update(user_params)
-                        result = get_result(201, 'User successfully updated')
+                        @response = get_result(201, 'User successfully updated')
                     else
-                        result = get_result(500, 'Faild to update user')
+                        @response = get_result(500, 'Faild to update user')
                     end
 
                 rescue
-                    result = get_result(500, 'Faild to find user')
+                    @response = get_result(500, 'Faild to find user')
                 end
 
                 render "users/update"
@@ -68,13 +68,13 @@ module Api
                     @u = User.find(params[:id])
 
                     if @u.destroy
-                        result = get_result(201, 'User successfully deleted')
+                        @response = get_result(201, 'User successfully deleted')
                     else
-                        result = get_result(500, 'Faild to delete User')
+                        @response = get_result(500, 'Faild to delete User')
                     end
 
                 rescue
-                    result = get_result(500, 'Faild to find User')
+                    @response = get_result(500, 'Faild to find User')
                 end
 
                 render 'users/destroy'

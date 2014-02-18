@@ -1,14 +1,20 @@
-object @r
-attributes :id, :title, :desciption, :url, :created_at, :updated_at
+object false
 
-child :resource_type do
-  attributes :id, :resource_type
+extends 'resources/response'
+ 
+child @r do
+  attributes :id, :title, :desciption, :url, :created_at, :updated_at
+    child :resource_type do
+        attributes :id, :resource_type
+    end
+
+    child :licence do
+      attributes :id, :licence, :description
+    end
+
+    child :tags do
+      attributes :id, :tag
+    end
 end
 
-child :licence do
-  attributes :id, :licence
-end
 
-child :tags do
-  attributes :id, :tag
-end

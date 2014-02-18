@@ -1,4 +1,3 @@
-object @r
-attributes :id, :title, :desciption, :url, :created_at, :updated_at
+object false
 
-extends 'resources/show'
+extends 'resources/create'

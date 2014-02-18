@@ -10,9 +10,9 @@ module Api
 
                 begin
                     @r = Resource.all
-                    result = get_result(201, 'Successfully fetched all resources', @r)
+                    @response = get_result(201, 'Successfully fetched all resources')
                 rescue
-                    result = get_result(500, 'Faild to fetched all resources', @r)
+                    @response = get_result(500, 'Faild to fetched all resources')
                 end
 
                 render 'resources/index'
@@ -23,9 +23,9 @@ module Api
 
                 begin
                     @r = Resource.find(params[:id])
-                    result = get_result(201, 'Successfully fetched Resource', @r)
+                    @response = get_result(201, 'Successfully fetched Resource')
                 rescue
-                    result = get_result(500, 'Faild to find Resource', @r)
+                    @response = get_result(500, 'Faild to find Resource')
                 end
 
                 render 'resources/show'
@@ -42,13 +42,13 @@ module Api
                     end
 
                     if @r.save
-                        result = get_result(201, 'Resource successfully created', @r)
+                        @response = get_result(201, 'Resource successfully created')
                     else
-                        result = get_result(500, 'Faild to create Resource', @r)
+                        @response = get_result(500, 'Faild to create Resource')
                     end
 
                 rescue
-                    result = get_result(500, 'Faild to create Resource', @r)
+                    @response = get_result(500, 'Faild to create Resource')
                 end
 
                 render 'resources/create'
@@ -65,14 +65,14 @@ module Api
                         @r.tags << Tag.find(tag)
                     end
 
-                    if r.update(resource_params)
-                        result = get_result(201, 'Resource successfully updated', @r)
+                    if @r.update(resource_params)
+                        @response = get_result(201, 'Resource successfully updated')
                     else
-                        result = get_result(500, 'Faild to update Resource', @r)
+                        @response = get_result(500, 'Faild to update Resource')
                     end
 
                 rescue
-                    result = get_result(500, 'Faild to find Resource', @r)
+                    @response = get_result(500, 'Faild to find Resource')
                 end
 
                 render 'resources/update'
@@ -85,13 +85,13 @@ module Api
                     @r = Resource.find(params[:id])
 
                     if @r.destroy
-                        result = get_result(201, 'Resource successfully deleted', @r)
+                        @response = get_result(201, 'Resource successfully deleted')
                     else
-                        result = get_result(500, 'Faild to delete Resource', @r)
+                        @response = get_result(500, 'Faild to delete Resource')
                     end
 
                 rescue
-                    result = get_result(500, 'Faild to find Resource', @r)
+                    @response = get_result(500, 'Faild to find Resource')
                 end
 
                 render 'resources/destroy'
