@@ -1,6 +1,6 @@
 object false
 
-extends 'API/licences/response'
+extends 'API/shared/response'
  
 child @l do
     attributes :id, :licence, :created_at, :updated_at

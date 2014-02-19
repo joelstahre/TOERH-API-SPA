@@ -4,7 +4,7 @@ TOERH::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
 
-      #resources :resources
+      resources :resources
       #resources :users
       resources :licences
       resources :resource_types
@@ -14,10 +14,22 @@ TOERH::Application.routes.draw do
         resources :resources
       end
 
-      resources :resources do
-        resources :user
+      resources :resource_types do
+        resources :resources
       end
-      
+
+      resources :licences do
+        resources :resources
+      end
+
+      resources :tags do
+        resources :resources
+      end
+
+      resources :resources do
+        resources :tags
+      end
+
     end
   end
 

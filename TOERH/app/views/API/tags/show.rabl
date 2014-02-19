@@ -1,6 +1,6 @@
 object false
 
-extends 'API/tags/response'
+extends 'API/shared/response'
  
 child @t do
     attributes :id, :tag, :created_at, :updated_at 
