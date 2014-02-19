@@ -2,18 +2,17 @@ module Api
     module V1
         class UsersController < ApiController
             before_filter :restrict_access
-
             respond_to :json, :xml
 
+            # GET /api/v1/users
             def index
 
+                @limit = params[:limit] || 2
+                @offset = params[:offset] || 0
+
                 begin
-                    if params[:user_id]
-                        @u = User.where(user_id: params[:user_id])
-                    else
-                        @u = User.all
-                    end
-                    @response = get_result(200, 'Successfully fetched all Users')
+                    @u = User.limit(@limit).offset(@offset).order(id: :desc)
+                    @response = get_result(200, 'Successfully fetched all Users', @u.count, @limit, @offset)
                 rescue
                     @response = get_result(500, 'Faild to fetch all Users')
                 end
@@ -21,6 +20,7 @@ module Api
                 render "API/users/index"
             end
 
+            # GET /api/v1/users/:id
             def show
                 begin
                     @u = User.find(params[:id])
@@ -32,6 +32,7 @@ module Api
                 render "API/users/show"
             end
 
+            # POST /api/v1/users
             def create
                 begin
                     @u = User.new(user_params)
@@ -49,6 +50,7 @@ module Api
                 render "API/users/create"
             end
 
+            # PUT /api/v1/users/:id
             def update
 
                 begin
@@ -67,6 +69,7 @@ module Api
                 render "API/users/update"
             end
 
+            # DELETE /api/v1/users/:id
             def destroy
                 begin
                     @u = User.find(params[:id])
