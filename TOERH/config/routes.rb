@@ -3,8 +3,12 @@ TOERH::Application.routes.draw do
   # Api Routes
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
-      resources :resources
-      resources :users
+
+      #resources :resources
+      #resources :users
+      resources :licences
+      resources :resource_types
+      resources :tags
 
       resources :users do
         resources :resources

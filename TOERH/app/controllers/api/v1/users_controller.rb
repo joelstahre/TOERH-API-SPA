@@ -18,7 +18,7 @@ module Api
                     @response = get_result(500, 'Faild to fetch all Users')
                 end
 
-                render "users/index"
+                render "API/users/index"
             end
 
             def show
@@ -29,7 +29,7 @@ module Api
                     @response = get_result(500, 'Faild to find User')
                 end
                 
-                render "users/show"
+                render "API/users/show"
             end
 
             def create
@@ -46,7 +46,7 @@ module Api
                     @response = get_result(500, 'Faild to create User')
                 end
 
-                render "users/create"
+                render "API/users/create"
             end
 
             def update
@@ -64,7 +64,7 @@ module Api
                     @response = get_result(500, 'Faild to find user')
                 end
 
-                render "users/update"
+                render "API/users/update"
             end
 
             def destroy
@@ -81,7 +81,7 @@ module Api
                     @response = get_result(500, 'Faild to find User')
                 end
 
-                render 'users/destroy'
+                render 'API/users/destroy'
             end
 
 

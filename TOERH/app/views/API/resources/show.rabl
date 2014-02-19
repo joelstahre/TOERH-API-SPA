@@ -1,6 +1,6 @@
 object false
 
-extends 'resources/response'
+extends 'API/resources/response'
  
 child @r do
     attributes :id, :title, :desciption, :url, :created_at, :updated_at

@@ -5,7 +5,7 @@ module Api
 
             respond_to :json, :xml
 
-            # GET
+            # GET All
             def index
 
                 begin
@@ -15,7 +15,7 @@ module Api
                     @response = get_result(500, 'Faild to fetched all resources')
                 end
 
-                render 'resources/index'
+                render 'API/resources/index'
             end
 
             # GET/id
@@ -28,7 +28,7 @@ module Api
                     @response = get_result(500, 'Faild to find Resource')
                 end
 
-                render 'resources/show'
+                render 'API/resources/show'
             end
 
             # POST
@@ -51,7 +51,7 @@ module Api
                     @response = get_result(500, 'Faild to create Resource')
                 end
 
-                render 'resources/create'
+                render 'API/resources/create'
             end
 
             # PUT
@@ -75,7 +75,7 @@ module Api
                     @response = get_result(500, 'Faild to find Resource')
                 end
 
-                render 'resources/update'
+                render 'API/resources/update'
             end
 
             # DELETE
@@ -94,7 +94,7 @@ module Api
                     @response = get_result(500, 'Faild to find Resource')
                 end
 
-                render 'resources/destroy'
+                render 'API/resources/destroy'
             end
 
             private 
