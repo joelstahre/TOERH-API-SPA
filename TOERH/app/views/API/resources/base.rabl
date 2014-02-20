@@ -25,10 +25,7 @@ child @r do
 
     node(:user) do |m|
         { 
-          "id" => m.user.id,
-          "first_name" => m.user.first_name,
-          "last_name" => m.user.last_name,
-          "email" => m.user.email
+          "id" => m.user_id
         }
     end
 end
