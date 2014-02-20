@@ -6,13 +6,18 @@ module Api
 
             # GET /api/v1/users
             def index
-
-                @limit = params[:limit] || 2
+                search = params[:search]
+                @limit = params[:limit] || 10
                 @offset = params[:offset] || 0
 
                 begin
-                    @u = User.limit(@limit).offset(@offset).order(id: :desc)
-                    @response = get_result(200, 'Successfully fetched all Users', @u.count, @limit, @offset)
+                    if search
+                        @u = User.find(:all, :conditions => ['last_name LIKE ?', "%#{search}%"])
+                        @response = get_result(200, 'Result for your search: ' + search)
+                    else
+                        @u = User.limit(@limit).offset(@offset).order(id: :desc)
+                        @response = get_result(200, 'Successfully fetched all Users', @u.count, @limit, @offset)
+                    end
                 rescue
                     @response = get_result(500, 'Faild to fetch all Users')
                 end

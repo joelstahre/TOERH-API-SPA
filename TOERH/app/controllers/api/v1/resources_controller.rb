@@ -10,39 +10,44 @@ module Api
             # GET /api/v1/licences/:licence_id/resources
             # GET /api/v1/tags/:tag_id/resources
             def index
-
+                search = params[:search]
                 user_id = params[:user_id]
                 resource_type_id = params[:resource_type_id]
                 licence_id = params[:licence_id]
                 tag_id = params[:tag_id]
 
-                @limit = params[:limit] || 2
+                @limit = params[:limit] || 10
                 @offset = params[:offset] || 0
                 
 
                 begin
-                    if user_id
-                        @r = Resource.limit(@limit).offset(@offset).order(id: :desc).where(user_id: user_id)
-                        @response = get_result(200, 'Successfully fetched all resources for user with id:' + user_id, @r.count, @limit, @offset)
+
+                    if search
+                        @r = Resource.search(search)
+                        @response = get_result(200, 'Result for your search: ' + search)
+                    elsif user_id
+
+                        @r = Resource.get_resources_by_user_id(user_id)
+                        @response = get_result(200, 'Successfully fetched all resources for user with id:' + user_id, @r.count)
                         @param = 'user_id=' + user_id + '&'
                     
                     elsif resource_type_id
-                        @r = Resource.limit(@limit).offset(@offset).order(id: :desc).where(resource_type_id: resource_type_id)
+                        @r = Resource.get_resources_by_resource_type(resource_type_id, @limit, @offset)
                         @response = get_result(200, 'Successfully fetched all resources with resource_type_id:' + resource_type_id, @r.count, @limit, @offset)
                         @param = 'resource_type_id=' + resource_type_id + '&'
 
                     elsif licence_id
-                        @r = Resource.limit(@limit).offset(@offset).order(id: :desc).where(licence_id: licence_id)
+                        @r = Resource.get_resources_by_licence_id(licence_id, @limit, @offset)
                         @response = get_result(200, 'Successfully fetched all resources with licence_id:' + licence_id, @r.count, @limit, @offset)
                         @param = 'licence_id=' + licence_id + '&'
 
                     elsif tag_id
-                        @r = Tag.find(tag_id).resources.limit(@limit).offset(@offset).order(id: :desc)
+                        @r = Tag.find(tag_id).resources.get_resources_by_tag_id(tag_id, @limit, @offset) 
                         @response = get_result(200, 'Successfully fetched all resources with tag_id:' + tag_id, @r.count, @limit, @offset)
                         @param = 'tag_id=' + tag_id + '&'
 
                     else
-                        @r = Resource.limit(@limit).offset(@offset).order(id: :desc)
+                        @r = Resource.get_all_resources(@limit, @offset)
                         @response = get_result(200, 'Successfully fetched all resources', @r.count, @limit, @offset)
 
                     end
@@ -74,7 +79,10 @@ module Api
                     @r = Resource.new(resource_params)
 
                     params[:tags].each do |tag|
-                        @r.tags << Tag.find(tag)
+                        t = Tag.find(tag)
+                        if t
+                            @r.tags << t
+                        end
                     end
 
                     if @r.save
@@ -99,7 +107,11 @@ module Api
                     
                     # TODO: Hur skall taggar hanteras vid update, lägga till, ta bort.
                     params[:tags].each do |tag|
-                        @r.tags << Tag.find(tag)
+
+                        t = Tag.find(tag)
+                        if t && !@r.tags.exists?(tag)
+                            @r.tags << t
+                        end
                     end
 
                     if @r.update(resource_params)

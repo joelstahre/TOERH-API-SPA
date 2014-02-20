@@ -28,18 +28,19 @@ ResourceType.create(resource_type: 'pdf')
 ResourceType.create(resource_type: 'Website')
 
 Licence.create(licence: 'MIT', description: 'Lorem ipsum')
+Licence.create(licence: 'CC', description: 'Lorem ipsum')
 
-t = Tag.create(tag: 'tag 1')
-t2 = Tag.create(tag: 'tag 2')
-t3 = Tag.create(tag: 'tag 3')
-t4 = Tag.create(tag: 'tag 4')
+t = Tag.create(tag: 'Biology')
+t2 = Tag.create(tag: 'Science')
+t3 = Tag.create(tag: 'Webb')
+t4 = Tag.create(tag: 'Funny')
 
 
 r =Resource.create(user_id: 1, resource_type_id: 3, licence_id: 1, title: "Resurs 1", desciption: "en beskrivning", url: "http://www.joelstahre.com")
 r2 =Resource.create(user_id: 1, resource_type_id: 2, licence_id: 1, title: "Resurs 2", desciption: "en beskrivning", url: "http://www.joelstahre.com")
-r3 =Resource.create(user_id: 2, resource_type_id: 1, licence_id: 1, title: "Resurs 3", desciption: "en beskrivning", url: "http://www.joelstahre.com")
+r3 =Resource.create(user_id: 2, resource_type_id: 1, licence_id: 2, title: "Resurs 3", desciption: "en beskrivning", url: "http://www.joelstahre.com")
 r4 =Resource.create(user_id: 2, resource_type_id: 2, licence_id: 1, title: "Resurs 4", desciption: "en beskrivning", url: "http://www.joelstahre.com")
-r5 =Resource.create(user_id: 3, resource_type_id: 1, licence_id: 1, title: "Resurs 5", desciption: "en beskrivning", url: "http://www.joelstahre.com")
+r5 =Resource.create(user_id: 3, resource_type_id: 3, licence_id: 2, title: "Resurs 5", desciption: "en beskrivning", url: "http://www.joelstahre.com")
 r6 =Resource.create(user_id: 3, resource_type_id: 1, licence_id: 1, title: "Resurs 6", desciption: "en beskrivning", url: "http://www.joelstahre.com")
 r.tags << t
 r2.tags << t3
@@ -49,4 +50,4 @@ r4.tags << t2
 r5.tags << t3
 r6.tags << t4
 
-ApiKey.create
+Admin.create(first_name: 'admin', last_name: 'admin', admin_email: 'admin@admin.se', username: 'admin', password: 'password', password_confirmation: 'password')

@@ -38,6 +38,25 @@ module Api
 
                 render 'API/tags/show'
             end
+
+            # POST /api/v1/tags
+            def create
+                begin
+                    @t = Tag.new(tag: params[:tag])
+                    
+                    if @t.save
+                        @response = get_result(201, 'Tag successfully created')
+                    else
+                        @response = get_result(500, 'Faild to create Tag')
+                    end
+
+                rescue
+                    @response = get_result(500, 'Faild to create Tag')
+                end
+
+                render "API/tags/create"
+            end
+
         end
     end
 end
