@@ -7,7 +7,7 @@
 
 **Authorization: Token token="xxxXXXxXxxxXxXxxXXXxx"**
 
-
+**Default format i json, if you want xml, do .xml after the request url**
 
 ### Users
 Users own resources
