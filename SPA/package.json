@@ -1,0 +1,11 @@
+{
+  "name"         : "spa",
+  "version"      : "0.0.0",
+  "description"  : "Webbramverk labb.",
+  "main"         : "server.js",
+  "author"       : "Joel Stahre",
+  "dependencies" : {
+    "express"    : "~3.4.4",
+    "mongoose"   : "~3.6.2"
+    }
+  }
