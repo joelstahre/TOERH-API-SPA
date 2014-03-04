@@ -1,0 +1,18 @@
+<h1>Resources View</h1>
+<p>This should list all resources</p>
+
+<div data-ng-repeat="resource in resources">
+ 
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{resource.resource.title}}</h3>
+        </div>
+        <div class="panel-body">
+            <p>Description: {{resource.resource.desciption}}</p>
+            <p>URL: <a href="'{{resource.resource.url}}'">{{resource.resource.url}}</a></p>
+            <p>Type: {{resource.resource.resource_type.resource_type}}</p>
+            <p>Licence: {{resource.resource.licence.licence}}</p>
+        </div>
+    </div>
+
+</div>

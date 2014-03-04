@@ -1,6 +1,6 @@
 <!doctype html>
  
-<html lang="en">
+<html data-ng-app="toerhApp">
 <head>
     <meta charset="utf-8">
      
@@ -41,21 +41,23 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">All Resources</a></li>
+            <li class="active"><a href="#/resources">All Resources</a></li>
             <li><a href="#">-</a></li>
             <li><a href="#">-</a></li>
             <li><a href="#">-</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1>Main</h1>
-          
+
+          <div data-ng-view></div>
+
         </div>
       </div>
     </div>
  
     <!--Vendor libs-->
     <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
     <!--UI libs-->
@@ -64,6 +66,9 @@
 
     <!--App libs-->
     <script src="app/app.js"></script>
+    <script src="app/controllers/resourcesController.js"></script>
+    <script src="app/services/resourcesService.js"></script>
+
 
 </body>
 </html>
