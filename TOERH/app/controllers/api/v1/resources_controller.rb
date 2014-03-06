@@ -1,7 +1,9 @@
 module Api
     module V1
         class ResourcesController < ApiController
-            before_filter :restrict_access
+            
+            before_filter :restrict_access, :except => [:options]
+            before_filter :set_headers
             respond_to :json, :xml
 
             # GET /api/v1/resources
@@ -18,8 +20,16 @@ module Api
 
                 @limit = params[:limit] || 10
                 @offset = params[:offset] || 0
-                
 
+                # Ful lösning!! 
+                @prev = "http://#{request.host_with_port}#{api_v1_resources_path}?#{@param}limit=#{@limit}&offset=#{@offset.to_i - @limit.to_i}"
+                @next = "http://#{request.host_with_port}#{api_v1_resources_path}?#{@param}limit=#{@limit}&offset=#{@offset.to_i + @limit.to_i}"
+
+                if @offset.to_i <= 0
+                    @prev = nil
+                end
+                
+               
                 begin
 
                     if search
@@ -48,6 +58,11 @@ module Api
 
                     else
                         @r = Resource.get_all_resources(@limit, @offset)
+                        
+                        # Ful Lösnig!!!!!
+                        if @r.count < 10
+                            @next = nil
+                        end
                         @response = get_result(200, 'Successfully fetched all resources', @r.count, @limit, @offset)
 
                     end
@@ -148,8 +163,24 @@ module Api
                 render 'API/resources/destroy'
             end
 
-            private 
-  
+
+            # CrossDomain
+            def options
+                set_headers
+                # this will send an empty request to the clien with 200 status code (OK, can proceed)
+                render :text => '', :content_type => 'text/plain'
+            end
+
+            private
+            # Set CORS
+            def set_headers
+                headers['Access-Control-Allow-Origin'] = '*'
+                headers['Access-Control-Expose-Headers'] = 'Etag'
+                headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD'
+                headers['Access-Control-Allow-Headers'] = '*, x-requested-with, Content-Type, If-Modified-Since, If-None-Match, Authorization'
+                headers['Access-Control-Max-Age'] = '86400'
+            end
+
             # Prevent mass assagniment
             def resource_params
                 params.require(:resource).permit(:title, :desciption, :url, :user_id, :resource_type_id, :licence_id, :tags)

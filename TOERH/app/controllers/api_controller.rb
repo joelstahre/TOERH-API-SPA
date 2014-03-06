@@ -1,5 +1,6 @@
 class ApiController < ApplicationController
 
+
     # Get the result
     def get_result(status, message, count = nil, limit = nil, offset = nil)
         response.status = status
