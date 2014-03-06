@@ -1,76 +1,36 @@
 
-app.service('resourcesService', function () {
-    this.getResources = function () {
-        return resources;
+app.service('resourcesService', function ($http, $q) {
+    
+    this.getResources = function (url) {
+
+        url = url || 'http://localhost:3000/api/v1/resources';
+
+        var task = $q.defer();
+    
+        var config = {
+            url: url,
+            method: 'GET',
+            headers: {
+                'Authorization': 'Token token=329e4d040dfd4942bdd2bea73996d399',
+                'Content-Type': 'application/json'
+            }
+        };
+
+        var p = $http(config);
+        p.success(function(data, status, headers, config){
+            //console.log('Success: ' + JSON.stringify(data));
+            //console.log(data);
+            task.resolve(data);
+        });
+
+        p.error(function(data){
+            //console.log(data);
+            task.reject('Det blev fel');
+        });
+
+        return task.promise;
+
     };
 
-    var resources = [
-        {
-            resource: {
-                id: 6,
-                title: "Resurs 6",
-                desciption: "en beskrivning",
-                url: "http://www.joelstahre.com",
-                created_at: "2014-02-17T18:26:30.198Z",
-                updated_at: "2014-02-17T18:26:30.198Z",
-                resource_type: {
-                    id: 6,
-                    resource_type: "Video"
-                },
-                licence: {
-                    id: 6,
-                    licence: "MIT",
-                    desciption: "en beskrivning"
-                },
-                tags: [
-                    {
-                        id: 4,
-                        tag: "Biology",
-                        created_at: "2014-02-17T18:26:29.273Z",
-                        updated_at: "2014-02-17T18:26:29.273Z"
-                    }
-                ],
-                user: {
-                    id: 3,
-                    first_name: "Foo",
-                    last_name: "Bar",
-                    email: "foo@bar.com"
-                }
-            }
-        },
-        {
-            resource: {
-                id: 7,
-                title: "Resurs 7",
-                desciption: "en beskrivning till",
-                url: "http://www.joelstahre.com",
-                created_at: "2014-02-17T18:26:30.198Z",
-                updated_at: "2014-02-17T18:26:30.198Z",
-                resource_type: {
-                    id: 6,
-                    resource_type: "Video"
-                },
-                licence: {
-                    id: 6,
-                    licence: "MIT",
-                    desciption: "en beskrivning"
-                },
-                tags: [
-                    {
-                        id: 4,
-                        tag: "Biology",
-                        created_at: "2014-02-17T18:26:29.273Z",
-                        updated_at: "2014-02-17T18:26:29.273Z"
-                    }
-                ],
-                user: {
-                    id: 3,
-                    first_name: "Foo",
-                    last_name: "Bar",
-                    email: "foo@bar.com"
-                }
-            }
-        }
-    ];
 
 });

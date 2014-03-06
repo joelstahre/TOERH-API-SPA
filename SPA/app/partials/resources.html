@@ -14,5 +14,8 @@
             <p>Licence: {{resource.resource.licence.licence}}</p>
         </div>
     </div>
-
 </div>
+
+
+<button ng-if="prevlink" ng-click="getResources(prevlink)">Prev</button>
+<button ng-if="nextlink" ng-click="getResources(nextlink)">Next</button>
