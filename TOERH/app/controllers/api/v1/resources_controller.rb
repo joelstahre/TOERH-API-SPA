@@ -2,8 +2,11 @@ module Api
     module V1
         class ResourcesController < ApiController
             
-            before_filter :restrict_access, :except => [:options]
-            before_filter :set_headers
+            before_filter :restrict_access
+
+            # CORS
+           # before_filter :restrict_access, :except => [:options]
+           # before_filter :set_headers
             respond_to :json, :xml
 
             # GET /api/v1/resources
@@ -165,21 +168,21 @@ module Api
 
 
             # CrossDomain
-            def options
-                set_headers
+            #def options
+             #   set_headers
                 # this will send an empty request to the clien with 200 status code (OK, can proceed)
-                render :text => '', :content_type => 'text/plain'
-            end
+              #  render :text => '', :content_type => 'text/plain'
+            #end
 
             private
             # Set CORS
-            def set_headers
-                headers['Access-Control-Allow-Origin'] = '*'
-                headers['Access-Control-Expose-Headers'] = 'Etag'
-                headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD'
-                headers['Access-Control-Allow-Headers'] = '*, x-requested-with, Content-Type, If-Modified-Since, If-None-Match, Authorization'
-                headers['Access-Control-Max-Age'] = '86400'
-            end
+            #def set_headers
+             #   headers['Access-Control-Allow-Origin'] = '*'
+              #  headers['Access-Control-Expose-Headers'] = 'Etag'
+               # headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD'
+                #headers['Access-Control-Allow-Headers'] = '*, x-requested-with, Content-Type, If-Modified-Since, If-None-Match, Authorization'
+               # headers['Access-Control-Max-Age'] = '86400'
+            #end
 
             # Prevent mass assagniment
             def resource_params
