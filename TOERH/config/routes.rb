@@ -43,6 +43,10 @@ TOERH::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
+  get '/auth/github/callback' => 'omni_sessions#create'
+
+  get '/authenticate' => 'omni_sessions#authenticate'
+
   # Example of regular route
   #   get 'products/:id' => 'catalog#view'
   get "api_keys/index"

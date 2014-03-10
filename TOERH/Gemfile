@@ -55,3 +55,5 @@ gem 'rabl'
 gem 'oj'
 
 gem 'rack-cors', :require => 'rack/cors'
+
+gem 'omniauth-github'
