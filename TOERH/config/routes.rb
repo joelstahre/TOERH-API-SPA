@@ -4,7 +4,8 @@ TOERH::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
 
-      match '/resources' => 'resources#options', :constraints => {:method => 'OPTIONS'}, via: [:options]
+      # CORS
+      #match '/resources' => 'resources#options', :constraints => {:method => 'OPTIONS'}, via: [:options]
 
       resources :resources
       #resources :users

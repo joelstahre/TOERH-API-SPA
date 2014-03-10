@@ -22,5 +22,23 @@ module TOERH
     #
     #config.autoload_paths += Dir["#{Rails.root}/app"]
     #config.autoload_paths += Dir["#{config.root}/app/**/"]
+    config.middleware.insert_before "ActionDispatch::Static", "Rack::Cors", :debug => true, :logger => Rails.logger do
+      allow do
+        origins '*'
+
+        resource '/cors',
+          :headers => :any,
+          :methods => [:post],
+          :credentials => true,
+          :max_age => 0
+
+        resource '*',
+          :headers => :any,
+          :methods => [:get, :post, :delete, :put, :options],
+          :max_age => 0
+      end
+    end
+    
+
   end
 end
