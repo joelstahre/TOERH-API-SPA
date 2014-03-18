@@ -1,5 +1,5 @@
-<h1>Resources View</h1>
-<p>This should list all resources</p>
+<h1>Lisy My Resources</h1>
+<p>This should list all My resources</p>
 
 <div data-ng-repeat="resource in resources">
  
@@ -12,6 +12,8 @@
             <p>URL: <a href="'{{resource.resource.url}}'">{{resource.resource.url}}</a></p>
             <p>Type: {{resource.resource.resource_type.resource_type}}</p>
             <p>Licence: {{resource.resource.licence.licence}}</p>
+            <button class="btn btn-warning" type="submit" data-ng-click="editResource(resource)">Edit</button>
+            <button class="btn btn-danger" type="submit" data-ng-click="deleteResource(resource)">Delete</button>
         </div>
     </div>
 </div>

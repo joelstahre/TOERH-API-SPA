@@ -33,4 +33,30 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def authorize_user
+        auth_token = request.headers["X-Access-Token"]
+        user = User.where(auth_token: auth_token).take
+
+        if user
+            return true
+        else
+            response.status = 401
+
+            errorResponse = {
+              status: 401, 
+              message: "Unauthorized request.", 
+              links: {
+                authenticate: "http://#{request.host}/api/v1/authenticate",
+                documentation: "http://#{request.host}/docs?autehnticate"
+              }
+            }
+
+            respond_to do |format|
+              format.xml { render xml: errorResponse}
+              format.json {render json: errorResponse}
+            end
+        end
+
+    end
+
 end
