@@ -8,7 +8,7 @@ class OmniSessionsController < ApplicationController
 
         redirect_url = session[:client_id]
         session[:client_id] = nil
-        redirect_to "#{redirect_url}?auth_token=#{user.auth_token}&token_expires=#{Rack::Utils.escape(user.token_expires.to_s)}"
+        redirect_to "#{redirect_url}?auth_token=#{user.auth_token}&id=#{user.id}&username=#{Rack::Utils.escape(user.name)}&token_expires=#{Rack::Utils.escape(user.token_expires.to_s)}"
         
     end
 
