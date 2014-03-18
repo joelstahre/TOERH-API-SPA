@@ -1,0 +1,41 @@
+<h1>Edit Resource</h1>
+<p>This is the Edit Resource page</p>
+
+<div class="container">
+  <form role="form">
+    <fieldset>
+
+      <div class="form-group">
+        <label>Title</label>
+        <input type='text' class="form-control" ng-model="resource.title"/>
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea type='text' class="form-control" ng-model="resource.desciption"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>URL</label>
+        <input type='text' class="form-control" ng-model="resource.url"/>
+      </div>
+
+      <div class="form-group">
+        <label>Rescource Type</label>
+        <select class="form-control" ng-model="type" ng-options="t.resource_type.resource_type for t in types"></select>
+      </div>
+
+      <div class="form-group">
+        <label>Licence</label>
+        <select class="form-control" ng-model="licence" ng-options="l.licence.licence for l in licences">
+        </select>
+      </div>
+
+   
+
+
+
+        <button type='submit' class="btn btn-primary" data-dismiss="modal" ng-click="save()">Save</button>
+    </fieldset>
+  </form>
+</div>
