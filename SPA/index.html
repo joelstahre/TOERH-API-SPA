@@ -27,11 +27,10 @@
           <a class="navbar-brand" href="#">TOERH SPA</a>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+          <ul class="nav navbar-nav navbar-right" data-ng-controller="AuthController">
+            <li data-ng-hide="isLoggedIn()"><a href="http://localhost:3000/authenticate?callback=http://localhost:8080">Sign in with GitHub</a></li>
+
+            <li data-ng-show="isLoggedIn()"><a ng-click="signout()" href="#">Signout</a></li>
           </ul>
         </div>
       </div>
@@ -40,11 +39,10 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="#/resources">All Resources</a></li>
-            <li><a href="#">-</a></li>
-            <li><a href="#">-</a></li>
-            <li><a href="#">-</a></li>
+          <ul class="nav nav-sidebar" data-ng-controller="AuthController">
+            <li class="active"><a href="/resources">All Resources</a></li>
+            <li data-ng-show="isLoggedIn()"><a href="/add">Add Resourse</a></li>
+            <li data-ng-show="isLoggedIn()"><a href="/myResources">List all my Resourses</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -67,7 +65,13 @@
     <!--App libs-->
     <script src="app/app.js"></script>
     <script src="app/controllers/resourcesController.js"></script>
+    <script src="app/controllers/myResourcesController.js"></script>
+    <script src="app/controllers/addController.js"></script>
+    <script src="app/controllers/editController.js"></script>
+    <script src="app/controllers/authController.js"></script>
     <script src="app/services/resourcesService.js"></script>
+    <script src="app/services/typesService.js"></script>
+    <script src="app/services/licenceService.js"></script>
 
 
 </body>
