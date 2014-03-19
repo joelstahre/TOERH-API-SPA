@@ -1,5 +1,5 @@
-app.controller('MyResourcesController', function ($scope, resourcesService, $window, $location) {
-
+app.controller('MyResourcesController', function ($scope, resourcesService, $window, $location, alertsService) {
+    alertsService.clearAlerts();
 
     var id = $window.sessionStorage.id;
     var url = 'http://localhost:3000/api/v1/users/' + id + '/resources';
@@ -40,8 +40,20 @@ app.controller('MyResourcesController', function ($scope, resourcesService, $win
 
             //Update View
             getResources(url);
-            console.log('Borttagen');
-            console.log(res);
+
+
+
+
+
+
+            alertsService.add({
+                text: 'Successfully deleted rescource',
+                type: 'alert-success'
+            });
+
+
+
+
 
         });
 

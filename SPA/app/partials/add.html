@@ -17,7 +17,7 @@
 
       <div class="form-group">
         <label>URL</label>
-        <input type='text' class="form-control" ng-model="resource.url"/>
+        <input type='text' class="form-control" placeholder="www.example.com" ng-model="resource.url"/>
       </div>
 
       <div class="form-group">
@@ -28,6 +28,12 @@
       <div class="form-group">
         <label>Licence</label>
         <select class="form-control" ng-model="licence" ng-options="l.licence.licence for l in licences">
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Tags</label>
+        <input type='text' class="form-control" placeholder="Comma separated ex. Tag, Tag2, Tag3" ng-model="resource.tags"/>
         </select>
       </div>
 

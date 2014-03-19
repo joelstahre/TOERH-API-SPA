@@ -98,14 +98,21 @@ module Api
 
                 begin
                     @r = Resource.new(resource_params)
-                    puts resource_params
+                    
+                    tags = params[:tags]
+                    if tags
+                        tags.each do |tag|
 
-                   params[:tags].each do |tag|
-                        t = Tag.find(tag)
-                        if t
-                           @r.tags << t
+                            t = Tag.find_by_tag(tag)
+
+                            if t
+                                @r.tags << t
+                            else
+                                @r.tags << Tag.create(tag: tag)
+                            end
+
                         end
-                end
+                    end
 
                     if @r.save
                         @response = get_result(201, 'Resource successfully created')
@@ -127,14 +134,19 @@ module Api
                 begin
                     @r = Resource.find(params[:id])
                     
-                    # TODO: Hur skall taggar hanteras vid update, lägga till, ta bort.
-                    params[:tags].each do |tag|
-
-                        t = Tag.find(tag)
-                        if t && !@r.tags.exists?(tag)
-                            @r.tags << t
+                    @r.tags = []
+                    tags = params[:tags]
+                    if tags
+                        tags.each do |tag|
+                            t = Tag.find_by_tag(tag)
+                            if t
+                                @r.tags << t
+                            else
+                                @r.tags << Tag.create(tag: tag)
+                            end
                         end
                     end
+                    
 
                     if @r.update(resource_params)
                         @response = get_result(200, 'Resource successfully updated')

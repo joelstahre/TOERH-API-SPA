@@ -1,5 +1,6 @@
-app.controller('AuthController', function ($scope, $location, $window) {
-
+app.controller('AuthController', function ($scope, $location, $window, alertsService) {
+    alertsService.clearAlerts();
+    
     init();
 
     function init() {

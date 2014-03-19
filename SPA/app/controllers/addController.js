@@ -1,4 +1,5 @@
-app.controller('AddController', function ($scope, resourcesService, typesService, licenceService, $window) {
+app.controller('AddController', function ($scope, resourcesService, typesService, licenceService, $window, alertsService) {
+    alertsService.clearAlerts();
 
     getTypes();
     getLicences();
@@ -36,13 +37,18 @@ app.controller('AddController', function ($scope, resourcesService, typesService
 
         $scope.resource.resource_type_id = $scope.type.resource_type.id;
         $scope.resource.licence_id = $scope.licence.licence.id;
-        $scope.resource.tags = [1, 2];
-
+        $scope.resource.tags = $scope.resource.tags.split(',');
 
         var rescource = resourcesService.addResource($scope.resource);
 
         rescource.success(function(res) {
-            console.log(res);
+            console.log('Successfully created rescource');
+            $scope.resource = '';
+            alertsService.add({
+                text: 'Successfully created rescource',
+                type: 'alert-success'
+            });
+
         });
 
         rescource.error(function(err) {

@@ -12,6 +12,12 @@
             <p>URL: <a href="'{{resource.resource.url}}'">{{resource.resource.url}}</a></p>
             <p>Type: {{resource.resource.resource_type.resource_type}}</p>
             <p>Licence: {{resource.resource.licence.licence}}</p>
+
+            <p>Tags: </p>
+            <span data-ng-repeat="tag in resource.resource.tags">
+                    <span class="label label-default">{{tag.tag}}</span>
+            </span>
+
         </div>
     </div>
 </div>

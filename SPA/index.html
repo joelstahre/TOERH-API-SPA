@@ -46,7 +46,7 @@
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
+          <alert-Messages></alert-Messages>
           <div data-ng-view></div>
 
         </div>
@@ -64,14 +64,22 @@
 
     <!--App libs-->
     <script src="app/app.js"></script>
+
+    <!--Controllers-->
     <script src="app/controllers/resourcesController.js"></script>
     <script src="app/controllers/myResourcesController.js"></script>
     <script src="app/controllers/addController.js"></script>
     <script src="app/controllers/editController.js"></script>
     <script src="app/controllers/authController.js"></script>
+
+    <!--Services-->
     <script src="app/services/resourcesService.js"></script>
     <script src="app/services/typesService.js"></script>
     <script src="app/services/licenceService.js"></script>
+    <script src="app/services/alertsService.js"></script>
+
+    <!--Directives-->
+    <script src="app/directives/alertMessageDirective.js"></script>
 
 
 </body>

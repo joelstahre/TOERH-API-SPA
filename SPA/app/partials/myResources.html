@@ -12,8 +12,16 @@
             <p>URL: <a href="'{{resource.resource.url}}'">{{resource.resource.url}}</a></p>
             <p>Type: {{resource.resource.resource_type.resource_type}}</p>
             <p>Licence: {{resource.resource.licence.licence}}</p>
-            <button class="btn btn-warning" type="submit" data-ng-click="editResource(resource)">Edit</button>
-            <button class="btn btn-danger" type="submit" data-ng-click="deleteResource(resource)">Delete</button>
+
+            <p>Tags: </p>
+            <span data-ng-repeat="tag in resource.resource.tags">
+                    <span class="label label-default">{{tag.tag}}</span>
+            </span>
+        </br>
+            <div>
+                <button class="btn btn-warning" type="submit" data-ng-click="editResource(resource)">Edit</button>
+                <button class="btn btn-danger" type="submit" data-ng-click="deleteResource(resource)">Delete</button>
+            </div>
         </div>
     </div>
 </div>

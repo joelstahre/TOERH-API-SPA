@@ -1,4 +1,5 @@
-app.controller('ResourcesController', function ($scope, resourcesService) {
+app.controller('ResourcesController', function ($scope, resourcesService, alertsService) {
+    alertsService.clearAlerts();
     
     $scope.resources;
     $scope.prevlink;
@@ -10,6 +11,7 @@ app.controller('ResourcesController', function ($scope, resourcesService) {
         var resources = resourcesService.getResources(url);
 
         resources.success(function(res) {
+            
             $scope.resources = res[0].resources;
             $scope.prevlink = res[0].links.prev_set_link;
             $scope.nextlink = res[0].links.next_set_link;

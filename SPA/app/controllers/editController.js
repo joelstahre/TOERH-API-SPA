@@ -1,5 +1,6 @@
-app.controller('EditController', function ($scope, resourcesService, typesService, licenceService, $routeParams, $window) {
-
+app.controller('EditController', function ($scope, resourcesService, typesService, licenceService, $routeParams, $window, $location, alertsService) {
+    alertsService.clearAlerts();
+    
     var id = $routeParams.id
 
     getResource(id);
@@ -9,7 +10,19 @@ app.controller('EditController', function ($scope, resourcesService, typesServic
 
         resource.success(function(res) {
             $scope.resource = res.resource;
-           // console.log(res.resource);
+           //console.log(res.resource);
+           //console.log( $scope.resource.tags);
+
+            // Concatinating all tags to a string
+            var tagsString = '';
+            for (var i=0;i<$scope.resource.tags.length;i++) { 
+                if (i == $scope.resource.tags.length - 1) {
+                    tagsString += $scope.resource.tags[i].tag;
+                } else {
+                    tagsString += $scope.resource.tags[i].tag + ', ';
+                }
+            }  
+            $scope.resource.test = tagsString;
 
         });
 
@@ -60,13 +73,20 @@ app.controller('EditController', function ($scope, resourcesService, typesServic
 
         $scope.resource.resource_type_id = $scope.type.resource_type.id;
         $scope.resource.licence_id = $scope.licence.licence.id;
-        $scope.resource.tags = [1, 2];
+        $scope.resource.tags = $scope.resource.test.split(',');
 
 
         var rescource = resourcesService.updateResource($scope.resource);
 
         rescource.success(function(res) {
             console.log(res);
+
+            alertsService.add({
+                text: 'Successfully edited rescource',
+                level: 'alert-success'
+            });
+
+            //$location.url('/myResources');
         });
 
         rescource.error(function(err) {
