@@ -1,13 +1,19 @@
 <h1>Resources View</h1>
-<p>This should list all resources</p>
 
-<div data-ng-repeat="resource in resources">
+
+<div class="input-group">
+  <input type="text" class="form-control" ng-model="search" placeholder="Search in result:">
+</div>
+<br>
+
+<div data-ng-repeat="resource in resources | filter:search">
  
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">{{resource.resource.title}}</h3>
         </div>
         <div class="panel-body">
+            <p>Created: {{resource.resource.created_at | dateConvert:'resource.resource.created_at'}}</p>
             <p>Description: {{resource.resource.desciption}}</p>
             <p>URL: <a href="'{{resource.resource.url}}'">{{resource.resource.url}}</a></p>
             <p>Type: {{resource.resource.resource_type.resource_type}}</p>
@@ -25,3 +31,5 @@
 
 <button class="btnbtn btn-default" ng-if="prevlink" ng-click="getResources(prevlink)">Prev</button>
 <button class="btnbtn btn-default" ng-if="nextlink" ng-click="getResources(nextlink)">Next</button>
+
+

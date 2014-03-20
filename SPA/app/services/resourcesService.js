@@ -7,7 +7,6 @@ app.service('resourcesService', function ($http, $q, $window) {
 
         var config = {
             headers: {
-                'Authorization': 'Token token=329e4d040dfd4942bdd2bea73996d399',
                 'Content-Type': 'application/json'
             }
         };
@@ -21,7 +20,6 @@ app.service('resourcesService', function ($http, $q, $window) {
 
         var config = {
             headers: {
-                'Authorization': 'Token token=329e4d040dfd4942bdd2bea73996d399',
                 'Content-Type': 'application/json'
             }
         };
@@ -36,7 +34,6 @@ app.service('resourcesService', function ($http, $q, $window) {
 
         var config = {
             headers: {
-                'Authorization': 'Token token=329e4d040dfd4942bdd2bea73996d399',
                 'X-Access-Token': $window.sessionStorage.token,
                 'Content-Type': 'application/json'
             }
@@ -50,7 +47,6 @@ app.service('resourcesService', function ($http, $q, $window) {
         
         var config = {
             headers: {
-                'Authorization': 'Token token=329e4d040dfd4942bdd2bea73996d399',
                 'X-Access-Token': $window.sessionStorage.token,
                 'Content-Type': 'application/json'
             }
@@ -63,7 +59,6 @@ app.service('resourcesService', function ($http, $q, $window) {
 
         var config = {
             headers: {
-                'Authorization': 'Token token=329e4d040dfd4942bdd2bea73996d399',
                 'X-Access-Token': $window.sessionStorage.token,
                 'Content-Type': 'application/json'
             }

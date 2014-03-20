@@ -33,6 +33,7 @@ app.controller('AddController', function ($scope, resourcesService, typesService
 
     $scope.save = function() {
 
+
         $scope.resource.user_id = $window.sessionStorage.id;
 
         $scope.resource.resource_type_id = $scope.type.resource_type.id;
@@ -54,6 +55,10 @@ app.controller('AddController', function ($scope, resourcesService, typesService
         rescource.error(function(err) {
             console.log(err);
         });
+
+        
+
+        
 
     }
 });

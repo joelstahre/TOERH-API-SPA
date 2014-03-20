@@ -2,23 +2,44 @@
 <p>This is the Add Resource page</p>
 
 <div class="container">
-  <form role="form">
+  <form name="form" novalidate>
     <fieldset>
 
       <div class="form-group">
         <label>Title</label>
-        <input type='text' class="form-control" ng-model="resource.title"/>
+        <input type='text' class="form-control" ng-model="resource.title" name="title" required/>
+       
+
+        <div data-ng-show="form.title.$dirty && form.title.$invalid">
+            <span data-ng-show="form.title.$error.required">Title is required.</span>
+        </div>
+
+
+
       </div>
 
       <div class="form-group">
         <label>Description</label>
-        <textarea type='text' class="form-control" ng-model="resource.desciption"></textarea>
+        <textarea type='text' class="form-control" ng-model="resource.desciption" name="description" required></textarea>
+        
+        <div data-ng-show="form.description.$dirty && form.description.$invalid">
+          <span data-ng-show="form.description.$error.required">Description is required.</span>
+        </div>
+
       </div>
+
 
       <div class="form-group">
         <label>URL</label>
-        <input type='text' class="form-control" placeholder="www.example.com" ng-model="resource.url"/>
+        <input type='text' class="form-control" placeholder="www.example.com" ng-model="resource.url" name="url" required/>
+        
+        <div data-ng-show="form.url.$dirty && form.url.$invalid">
+          <span data-ng-show="form.url.$error.required">Url is required.</span>
+        </div>
+
       </div>
+
+
 
       <div class="form-group">
         <label>Rescource Type</label>
@@ -33,15 +54,18 @@
 
       <div class="form-group">
         <label>Tags</label>
-        <input type='text' class="form-control" placeholder="Comma separated ex. Tag, Tag2, Tag3" ng-model="resource.tags"/>
-        </select>
+        <input type='text' class="form-control" placeholder="Comma separated ex. Tag, Tag2, Tag3" ng-model="resource.tags" name="tags" required/>
+        
+        <div data-ng-show="form.tags.$dirty && form.tags.$invalid">
+          <span data-ng-show="form.tags.$error.required">Tag is required.</span>
+        </div>
       </div>
 
    
 
 
 
-        <button type='submit' class="btn btn-primary" data-dismiss="modal" ng-click="save()">Save</button>
+        <button type='submit' data-ng-disabled="form.$invalid" class="btn btn-primary" data-dismiss="modal" ng-click="save()">Save</button>
     </fieldset>
   </form>
 </div>

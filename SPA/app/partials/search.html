@@ -1,4 +1,4 @@
-<h1>Lisy My Resources</h1>
+<h1>Search for: {{searchParam}}</h1>
 
 <div class="input-group">
   <input type="text" class="form-control" ng-model="search" placeholder="Search in result:">
@@ -19,20 +19,15 @@
             <p>Licence: {{resource.resource.licence.licence}}</p>
 
             <p>Tags: </p>
-            <div>
-                <span data-ng-repeat="tag in resource.resource.tags">
+            <span data-ng-repeat="tag in resource.resource.tags">
                     <span class="label label-default">{{tag.tag}}</span>
-                </span>
-            </div>
-        </br>
-            <div>
-                <button class="btn btn-warning" type="submit" data-ng-click="editResource(resource)">Edit</button>
-                <button class="btn btn-danger" type="submit" data-ng-click="deleteResource(resource)">Delete</button>
-            </div>
+            </span>
+
         </div>
     </div>
 </div>
 
 
-<button class="btn btn-default" ng-if="prevlink" ng-click="getResources(prevlink)">Prev</button>
-<button class="btn btn-default" ng-if="nextlink" ng-click="getResources(nextlink)">Next</button>
+<button class="btnbtn btn-default" ng-if="prevlink" ng-click="getResources(prevlink)">Prev</button>
+<button class="btnbtn btn-default" ng-if="nextlink" ng-click="getResources(nextlink)">Next</button>
+

@@ -22,7 +22,7 @@ app.controller('EditController', function ($scope, resourcesService, typesServic
                     tagsString += $scope.resource.tags[i].tag + ', ';
                 }
             }  
-            $scope.resource.test = tagsString;
+            $scope.resource.editTag = tagsString;
 
         });
 
@@ -73,7 +73,7 @@ app.controller('EditController', function ($scope, resourcesService, typesServic
 
         $scope.resource.resource_type_id = $scope.type.resource_type.id;
         $scope.resource.licence_id = $scope.licence.licence.id;
-        $scope.resource.tags = $scope.resource.test.split(',');
+        $scope.resource.tags = $scope.resource.editTag.split(',');
 
 
         var rescource = resourcesService.updateResource($scope.resource);
@@ -83,7 +83,7 @@ app.controller('EditController', function ($scope, resourcesService, typesServic
 
             alertsService.add({
                 text: 'Successfully edited rescource',
-                level: 'alert-success'
+                type: 'alert-success'
             });
 
             //$location.url('/myResources');

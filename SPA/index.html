@@ -25,6 +25,15 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">TOERH SPA</a>
+
+            <form class="navbar-form navbar-left" data-ng-controller="SearchController">
+              <input type="text" class="form-control" ng-model="searchWord" placeholder="Search for resouce title...">
+              <button class="btn btn-default" ng-click="searchBox(searchWord)"> Search</button>
+            </form>
+
+
+
+
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right" data-ng-controller="AuthController">
@@ -71,6 +80,7 @@
     <script src="app/controllers/addController.js"></script>
     <script src="app/controllers/editController.js"></script>
     <script src="app/controllers/authController.js"></script>
+    <script src="app/controllers/searchController.js"></script>
 
     <!--Services-->
     <script src="app/services/resourcesService.js"></script>
@@ -80,6 +90,8 @@
 
     <!--Directives-->
     <script src="app/directives/alertMessageDirective.js"></script>
+
+    <script src="app/filters/dateConvert.js"></script>
 
 
 </body>

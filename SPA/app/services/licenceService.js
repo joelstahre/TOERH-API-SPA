@@ -7,7 +7,6 @@ app.service('licenceService', function ($http) {
 
         var config = {
             headers: {
-                'Authorization': 'Token token=329e4d040dfd4942bdd2bea73996d399',
                 'Content-Type': 'application/json'
             }
         };
