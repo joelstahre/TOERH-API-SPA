@@ -25,7 +25,8 @@ child @r do
 
     node(:user) do |m|
         { 
-          "id" => m.user_id
+          "id" => m.user_id,
+          "test" => m
         }
     end
 end

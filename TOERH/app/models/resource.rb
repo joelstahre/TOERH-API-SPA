@@ -5,12 +5,12 @@ class Resource < ActiveRecord::Base
     belongs_to :licence
     has_and_belongs_to_many :tags
 
-    def self.search(search)
-        find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
+    def self.search(search, limit, offset)
+        limit(limit).offset(offset).order(id: :desc).find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
     end
  
-    def self.get_resources_by_user_id(id)
-        where(user_id: id)
+    def self.get_resources_by_user_id(id, limit, offset)
+        limit(limit).offset(offset).order(id: :desc).where(user_id: id)
     end
 
     def self.get_resources_by_resource_type(resource_type_id, limit, offset)

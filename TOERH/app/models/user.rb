@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-    has_many :resource
+    has_many :resources
 
     def self.create_with_omniauth(auth)
       create! do |user|

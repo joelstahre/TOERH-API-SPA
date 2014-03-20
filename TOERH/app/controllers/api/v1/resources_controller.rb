@@ -29,21 +29,24 @@ module Api
                 @prev = "http://#{request.host_with_port}#{api_v1_resources_path}?#{@param}limit=#{@limit}&offset=#{@offset.to_i - @limit.to_i}"
                 @next = "http://#{request.host_with_port}#{api_v1_resources_path}?#{@param}limit=#{@limit}&offset=#{@offset.to_i + @limit.to_i}"
 
-                if @offset.to_i <= 0
-                    @prev = nil
-                end
                 
-               
                 begin
 
                     if search
-                        @r = Resource.search(search)
+                        @r = Resource.search(search, @limit, @offset)
                         @response = get_result(200, 'Result for your search: ' + search)
+                        @param = 'search=' + search + '&'
+
+                        @prev = "http://#{request.host_with_port}#{api_v1_resources_path}?#{@param}limit=#{@limit}&offset=#{@offset.to_i - @limit.to_i}"
+                        @next = "http://#{request.host_with_port}#{api_v1_resources_path}?#{@param}limit=#{@limit}&offset=#{@offset.to_i + @limit.to_i}"
                     elsif user_id
 
-                        @r = Resource.get_resources_by_user_id(user_id)
+                        @r = Resource.get_resources_by_user_id(user_id, @limit, @offset)
                         @response = get_result(200, 'Successfully fetched all resources for user with id:' + user_id, @r.count)
                         @param = 'user_id=' + user_id + '&'
+
+                        @prev = "http://#{request.host_with_port}#{api_v1_user_resources_path}?limit=#{@limit}&offset=#{@offset.to_i - @limit.to_i}"
+                        @next = "http://#{request.host_with_port}#{api_v1_user_resources_path}?limit=#{@limit}&offset=#{@offset.to_i + @limit.to_i}"
                     
                     elsif resource_type_id
                         @r = Resource.get_resources_by_resource_type(resource_type_id, @limit, @offset)
@@ -62,13 +65,14 @@ module Api
 
                     else
                         @r = Resource.get_all_resources(@limit, @offset)
-                        
-                        
                         @response = get_result(200, 'Successfully fetched all resources', @r.count, @limit, @offset)
-
                     end
                 rescue
                     @response = get_result(500, 'Faild to fetched all resources')
+                end
+
+                if @offset.to_i <= 0
+                    @prev = nil
                 end
 
                 # Ful Lösnig!!!!!
