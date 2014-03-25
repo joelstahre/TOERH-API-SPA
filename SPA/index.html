@@ -5,6 +5,7 @@
     <meta charset="utf-8">
      
     <title>SPA AngularJS</title>
+    <base href="/angular/"/>
     <meta name="description" content="">
     <meta name="author" content="">
      
@@ -37,7 +38,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right" data-ng-controller="AuthController">
-            <li data-ng-hide="isLoggedIn()"><a href="http://localhost:3000/authenticate?callback=http://localhost:8080">Sign in with GitHub</a></li>
+            <li data-ng-hide="isLoggedIn()"><a href="http://secret-mesa-8573.herokuapp.com/authenticate?callback=http://joelstahre.com/angular/">Sign in with GitHub</a></li>
 
             <li data-ng-show="isLoggedIn()"><a ng-click="signout()" href="#">Signout</a></li>
           </ul>
@@ -49,9 +50,9 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar" data-ng-controller="AuthController">
-            <li class="active"><a href="/resources">All Resources</a></li>
-            <li data-ng-show="isLoggedIn()"><a href="/add">Add Resourse</a></li>
-            <li data-ng-show="isLoggedIn()"><a href="/myResources">List all my Resourses</a></li>
+            <li class="active"><a href="#/resources">All Resources</a></li>
+            <li data-ng-show="isLoggedIn()"><a href="#/add">Add Resourse</a></li>
+            <li data-ng-show="isLoggedIn()"><a href="#/myResources">List all my Resourses</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -65,7 +66,7 @@
     <!--Vendor libs-->
     <script src="js/angular.js"></script>
     <script src="js/angular-route.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery.js"></script>
 
     <!--UI libs-->
     <script src="js/bootstrap.min.js"></script>
