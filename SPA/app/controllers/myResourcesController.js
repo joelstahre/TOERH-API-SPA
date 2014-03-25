@@ -2,7 +2,7 @@ app.controller('MyResourcesController', function ($scope, resourcesService, $win
     alertsService.clearAlerts();
 
     var id = $window.sessionStorage.id;
-    var url = 'http://localhost:3000/api/v1/users/' + id + '/resources';
+    var url = 'http://secret-mesa-8573.herokuapp.com/api/v1/users/' + id + '/resources';
 
     $scope.resources;
     $scope.prevlink;

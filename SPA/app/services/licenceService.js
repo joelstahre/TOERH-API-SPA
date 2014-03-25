@@ -1,9 +1,10 @@
 app.service('licenceService', function ($http) {
     
+    var baseApiURL = 'http://secret-mesa-8573.herokuapp.com/api/v1';
 
     this.getLicences = function () {
 
-        var url = 'http://localhost:3000/api/v1/licences';
+        var url = baseApiURL + '/licences';
 
         var config = {
             headers: {

@@ -1,9 +1,10 @@
 app.service('typesService', function ($http, $q, $window) {
     
+    var baseApiURL = 'http://secret-mesa-8573.herokuapp.com/api/v1';
 
     this.getTypes = function () {
 
-        var url = 'http://localhost:3000/api/v1/resource_types';
+        var url = baseApiURL + '/resource_types';
 
         var config = {
             headers: {

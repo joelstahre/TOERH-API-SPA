@@ -1,9 +1,10 @@
 
 app.service('resourcesService', function ($http, $q, $window) {
     
+    var baseApiURL = 'http://secret-mesa-8573.herokuapp.com/api/v1';
 
     this.getResources = function (url) {
-        url = url || 'http://localhost:3000/api/v1/resources';
+        url = url || baseApiURL + '/resources';
 
         var config = {
             headers: {
@@ -16,7 +17,7 @@ app.service('resourcesService', function ($http, $q, $window) {
     };
 
     this.getResource = function (id) {
-        var url =  'http://localhost:3000/api/v1/resources/' + id;
+        var url =  baseApiURL + 'resources/' + id;
 
         var config = {
             headers: {
@@ -29,7 +30,7 @@ app.service('resourcesService', function ($http, $q, $window) {
     };
 
     this.deleteResource = function(resource) {
-        var url = 'http://localhost:3000/api/v1/resources/' + resource.resource.id;
+        var url = baseApiURL + '/resources/' + resource.resource.id;
 
 
         var config = {
@@ -52,7 +53,7 @@ app.service('resourcesService', function ($http, $q, $window) {
             }
         };
 
-        return $http.put('http://localhost:3000/api/v1/resources/' + resource.id, resource, config);
+        return $http.put(baseApiURL + '/resources/' + resource.id, resource, config);
     }
 
     this.addResource = function(resource) {
@@ -64,7 +65,7 @@ app.service('resourcesService', function ($http, $q, $window) {
             }
         };
 
-        return $http.post('http://localhost:3000/api/v1/resources', resource, config);
+        return $http.post(baseApiURL + '/resources', resource, config);
  
     }
 

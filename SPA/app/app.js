@@ -3,38 +3,38 @@ var app = angular.module('toerhApp', ['ngRoute']);
 
 app.config(function ($routeProvider, $locationProvider, $httpProvider) {
     $locationProvider.html5Mode(true);
-    $routeProvider
-        .when('/',
+    $routeProvider.when('/',
             {
                 templateUrl: 'app/partials/start.html',
                 controller: 'AuthController'
-            })
-        .when('/resources',
+            });
+
+        $routeProvider.when('/resources',
             {
                 controller: 'ResourcesController',
                 templateUrl: 'app/partials/resources.html'
-            })
-        .when('/add',
+            });
+        $routeProvider.when('/add',
             {
                 controller: 'AddController',
                 templateUrl: 'app/partials/add.html'
-            })
-        .when('/edit/:id',
+            });
+        $routeProvider.when('/edit/:id',
             {
                 controller: 'EditController',
-                templateUrl: 'http://localhost:8080/app/partials/edit.html'
-            })
-        .when('/myResources',
+                templateUrl: 'app/partials/edit.html'
+            });
+        $routeProvider.when('/myResources',
             {
                 controller: 'MyResourcesController',
                 templateUrl: 'app/partials/myResources.html'
-            })
-        .when('/search/:param',
+            });
+        $routeProvider.when('/search/:param',
             {
                 controller: 'SearchController',
-                templateUrl: 'http://localhost:8080/app/partials/search.html'
-            })
-        .otherwise({ redirectTo: '/' });
+                templateUrl: 'app/partials/search.html'
+            });
+        $routeProvider.otherwise({ redirectTo: '/' });
 
-        $httpProvider.defaults.headers.common['Authorization'] = "Token token=YOUR TOKEN HERE";
+        $httpProvider.defaults.headers.common['Authorization'] = "Token token=a8b8b89e7d1ba381b05511b6a45f58a2";
 });

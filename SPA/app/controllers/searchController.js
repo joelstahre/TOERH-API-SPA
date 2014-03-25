@@ -2,7 +2,7 @@ app.controller('SearchController', function ($scope, resourcesService, alertsSer
     alertsService.clearAlerts();
     
     var param = $routeParams.param;
-    var url = 'http://localhost:3000/api/v1/resources?search=' + param;
+    var url = 'http://secret-mesa-8573.herokuapp.com/api/v1/resources?search=' + param;
 
     if(param) {
         $scope.searchParam = param;
