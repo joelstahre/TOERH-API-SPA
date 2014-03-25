@@ -37,6 +37,7 @@ class ApplicationController < ActionController::Base
         auth_token = request.headers["X-Access-Token"]
         user = User.where(auth_token: auth_token).take
 
+
         if user
             return true
         else
