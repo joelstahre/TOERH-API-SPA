@@ -23,6 +23,8 @@ or use the live version on heroku:
 [http://secret-mesa-8573.herokuapp.com/](http://secret-mesa-8573.herokuapp.com/)
 
 
+Mail functionality do not work on the live version.
+
 
 [Api Documentation](TOERH/ApiDocumentation.md)
 

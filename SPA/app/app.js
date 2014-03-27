@@ -36,5 +36,5 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
             });
         $routeProvider.otherwise({ redirectTo: '/' });
 
-        $httpProvider.defaults.headers.common['Authorization'] = "Token token=a8b8b89e7d1ba381b05511b6a45f58a2";
+        $httpProvider.defaults.headers.common['Authorization'] = "Token token=513a141f03172e4359ce36a46aae8445";
 });

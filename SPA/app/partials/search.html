@@ -1,8 +1,18 @@
 <h1>Search for: {{searchParam}}</h1>
 
-<div class="input-group">
-  <input type="text" class="form-control" ng-model="search" placeholder="Search in result:">
-</div>
+<div ng-init="search = {}">
+
+<select ng-change="search = {}" ng-model="type" ng-init="type = '$'" class="form-control">
+    <option value="$">All</option>
+    <option value="title">Title</option>
+    <option value="url">URL</option>
+    <option value="licence">Licens</option>
+    <option value="resource_type">Typ</option>
+    <option value="tags">Tagg</option>
+  </select>
+
+  <input type="text" ng-model="search[type]" placeholder="Search" class="form-control">
+
 <br>
 
 <div data-ng-repeat="resource in resources | filter:search">
@@ -27,6 +37,7 @@
     </div>
 </div>
 
+</div>
 
 <button class="btnbtn btn-default" ng-if="prevlink" ng-click="getResources(prevlink)">Prev</button>
 <button class="btnbtn btn-default" ng-if="nextlink" ng-click="getResources(nextlink)">Next</button>
