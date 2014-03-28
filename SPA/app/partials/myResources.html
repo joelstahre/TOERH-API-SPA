@@ -7,9 +7,9 @@
     <option value="$">All</option>
     <option value="title">Title</option>
     <option value="url">URL</option>
-    <option value="licence">Licens</option>
-    <option value="resource_type">Typ</option>
-    <option value="tags">Tagg</option>
+    <option value="licence">Licence</option>
+    <option value="resource_type">Type</option>
+    <option value="tags">Tag</option>
   </select>
 
 
@@ -17,7 +17,7 @@
   <input type="text" ng-model="search[type]" placeholder="Search" class="form-control">
 <br>
 
-<div data-ng-repeat="resource in resources | filter:search:false">
+<div data-ng-repeat="resource in resources | filter:search">
  
     <div class="panel panel-default">
         <div class="panel-heading">
