@@ -21,21 +21,19 @@
  
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">{{resource.resource.title}}</h3>
+            <h3 class="panel-title">{{resource.title}}</h3>
         </div>
         <div class="panel-body">
-            <p>Created: {{resource.resource.created_at | dateConvert:'resource.resource.created_at'}}</p>
-            <p>Description: {{resource.resource.desciption}}</p>
-            <p>URL: <a href="'{{resource.resource.url}}'">{{resource.resource.url}}</a></p>
-            <p>Type: {{resource.resource.resource_type.resource_type}}</p>
-            <p>Licence: {{resource.resource.licence.licence}}</p>
+            <p>Created: {{resource.created_at | dateConvert:'resource.created_at'}}</p>
+            <p>Description: {{resource.desciption}}</p>
+            <p>URL: <a href="'{{resource.url}}'">{{resource.url}}</a></p>
+            <p>Type: {{resource.resource_type.resource_type}}</p>
+            <p>Licence: {{resource.licence.licence}}</p>
 
             <p>Tags: </p>
-            <div>
-                <span data-ng-repeat="tag in resource.resource.tags">
+            <span data-ng-repeat="tag in resource.tags">
                     <span class="label label-default">{{tag.tag}}</span>
-                </span>
-            </div>
+            </span>
         </br>
             <div>
                 <button class="btn btn-warning" type="submit" data-ng-click="editResource(resource)">Edit</button>

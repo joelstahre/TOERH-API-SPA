@@ -15,7 +15,7 @@ app.controller('AddController', function ($scope, resourcesService, typesService
         types.error(function(err) {
             console.log(err);
         });
-    }
+    };
 
     function getLicences() {
         var licences = licenceService.getLicences();
@@ -28,11 +28,10 @@ app.controller('AddController', function ($scope, resourcesService, typesService
         licences.error(function(err) {
             console.log(err);
         });
-    }
+    };
 
 
     $scope.save = function() {
-
 
         $scope.resource.user_id = $window.sessionStorage.id;
 
@@ -55,10 +54,6 @@ app.controller('AddController', function ($scope, resourcesService, typesService
         rescource.error(function(err) {
             console.log(err);
         });
+    };
 
-        
-
-        
-
-    }
 });

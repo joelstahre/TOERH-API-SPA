@@ -10,8 +10,6 @@ app.controller('EditController', function ($scope, resourcesService, typesServic
 
         resource.success(function(res) {
             $scope.resource = res.resource;
-           //console.log(res.resource);
-           //console.log( $scope.resource.tags);
 
             // Concatinating all tags to a string
             var tagsString = '';
@@ -31,12 +29,9 @@ app.controller('EditController', function ($scope, resourcesService, typesServic
         });
     }
 
-
-
     getTypes();
     getLicences();
 
-    //TODO: Fix dropdowns
     function getTypes() {
         var types = typesService.getTypes();
 
@@ -65,8 +60,6 @@ app.controller('EditController', function ($scope, resourcesService, typesServic
         });
     }
 
-
-
     $scope.save = function() {
 
         $scope.resource.user_id = $window.sessionStorage.id;
@@ -86,7 +79,6 @@ app.controller('EditController', function ($scope, resourcesService, typesServic
                 type: 'alert-success'
             });
 
-            //$location.url('/myResources');
         });
 
         rescource.error(function(err) {
