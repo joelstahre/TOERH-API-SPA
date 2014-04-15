@@ -32,4 +32,7 @@ Mail functionality do not work on the live version.
 
 Live version : 
 
+
+Verkar som att live heroku servern är lite slö, kan dröja några sekunder innan resuser laddats in.
+
 [http://joelstahre.com/angular](http://joelstahre.com/angular)

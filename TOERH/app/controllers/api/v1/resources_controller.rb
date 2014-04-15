@@ -3,7 +3,7 @@ module Api
         class ResourcesController < ApiController
             
             before_filter :restrict_access
-            before_filter :authorize_user, only: [:destroy, :create]
+            before_filter :authorize_user, only: [:destroy, :create, :put]
 
             # CORS
            # before_filter :restrict_access, :except => [:options]
